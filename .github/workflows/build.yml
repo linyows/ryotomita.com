@@ -22,7 +22,7 @@ jobs:
         cache: 'npm'
     - name: Run builds and deploys with ${{ matrix.node-version }}
       run: |
-        npm i && npm run lint
+        yarn install && yanr lint
 
   deploy:
     runs-on: ubuntu-latest
@@ -31,7 +31,9 @@ jobs:
     env:
       NOTION_CACHE: true
       NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
-      NOTION_HOMEID: ${{ secrets.NOTION_HOMEID }}
+      NOTION_HOME_ID: ${{ secrets.NOTION_HOME_ID }}
+      NOTION_MANIFESTO_ID: ${{ secrets.NOTION_MANIFESTO_ID }}
+      NOTION_ARCHIVEMENT_ID: ${{ secrets.NOTION_ARCHIVEMENT_ID }}
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
@@ -40,7 +42,7 @@ jobs:
         cache: 'npm'
     - name: Run next export
       run: |
-        npm i && npm run export
+        yarn install && yanr build
     - name: deploy by scp
       uses: appleboy/scp-action@master
       with:

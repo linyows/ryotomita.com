@@ -36,6 +36,7 @@
   position: relative;
   width: 100%;
   height: 600px;
+  margin-top: 1rem;
 }
 
 .caption {
@@ -50,6 +51,18 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 2rem 10rem 10rem 10rem;
+}
+
+.footer {
+  text-align: center;
+  font-size: .8rem;
+  padding: .3rem 0 .4rem;
+  color: #fff;
+  background-color: #9e0027;
+}
+
+.copyright {
+  font-weight: bold;
 }
 
 /* Mobile */
@@ -69,11 +82,17 @@
   .portrait {
     margin: 1rem auto 2rem;
   }
+  .nameTitle {
+    font-size: 1.4rem;
+  }
   .name {
     font-size: 4rem;
   }
   .archivement {
     padding: 1rem;
+  }
+  .fukuokacity {
+    height: 300px;
   }
 }
 

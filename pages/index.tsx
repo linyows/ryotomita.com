@@ -8,6 +8,7 @@ import { Blocks } from 'notionate/dist/components'
 import 'notionate/dist/styles/notionate.css'
 
 const noto = Noto_Sans_JP({ weight: ['400', '900'], subsets: ['latin'] })
+
 type Props = {
   page: GetPageResponseEx
   home: ListBlockChildrenResponseEx
@@ -70,6 +71,16 @@ const Home: NextPage<Props> = ({ page, home, manifesto, archivement }) => {
           <Blocks blocks={archivement} />
         </div>
       </main>
+
+      <footer className={noto.className}>
+        <div className={styles.footer}>
+          <span className={styles.copyright}>
+            &copy; Ryo Tomita. {` `}
+          </span>
+          Powered by Next.js, Notionate, Notion, GitHub, Cloudflare and {` `}
+          <a href="https://lolipop.jp/" target="_blank" rel="noopener noreferrer">Lolipop</a>.
+        </div>
+      </footer>
     </>
   )
 }
