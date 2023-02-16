@@ -66,3 +66,10 @@ a {
 .main .notionate-blocks-callout {
   width: auto;
 }
+
+@media (max-width: 600px) {
+  html,
+  body {
+    border: .5rem solid #9e0027;
+  }
+}

@@ -77,10 +77,10 @@
 }
 @media (max-width: 600px) {
   .main {
-    padding: 1rem;
+    padding: .5rem;
   }
   .portrait {
-    margin: 1rem auto 2rem;
+    margin: 2rem auto 2rem;
   }
   .nameTitle {
     font-size: 1.4rem;
@@ -89,7 +89,7 @@
     font-size: 4rem;
   }
   .archivement {
-    padding: 1rem;
+    padding: .5rem;
   }
   .fukuokacity {
     height: 300px;
