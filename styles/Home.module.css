@@ -60,7 +60,7 @@
   font-size: 6rem;
   font-weight: bold;
   line-height: 1;
-  color: #1951A8;
+  color: var(--primary-color);
 }
 
 /* BOX */
@@ -125,7 +125,7 @@
   font-size: .8rem;
   padding: .3rem 0 .4rem;
   color: #fff;
-  background-color: #C44E66;
+  background-color: var(--primary-color);
 }
 .copyright {
   font-weight: bold;
@@ -174,16 +174,24 @@
   .header {
     padding-top: .5rem;
   }
+  .header .body h1 {
+    clear: both;
+  }
   .portrait {
-    margin: 2rem auto 0;
+    margin: 2rem 1rem 0 0;
     display: block;
+    width: 160px;
+    height: 240px;
+    padding: 10px;
+    float: left;
   }
   .nameTitle {
-    font-size: 1.4rem;
+    padding-top: 3rem;
+    font-size: 1rem;
     padding-left: .3rem;
   }
   .name {
-    font-size: 4rem;
+    font-size: 3rem;
   }
   .nameYomi {
     font-size: .8rem;
@@ -207,6 +215,14 @@
   .box {
     display: block;
     padding: 1rem;
+  }
+  .fukuokacity {
+    margin: 0;
+  }
+  .manifesto {
+    margin: 2rem auto 3rem;
+    padding: 0 1rem 2rem;
+    border: 1px solid #000;
   }
 }
 
