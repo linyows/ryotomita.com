@@ -34,6 +34,9 @@ jobs:
       NOTION_HOME_ID: ${{ secrets.NOTION_HOME_ID }}
       NOTION_MANIFESTO_ID: ${{ secrets.NOTION_MANIFESTO_ID }}
       NOTION_ARCHIVEMENT_ID: ${{ secrets.NOTION_ARCHIVEMENT_ID }}
+      NOTION_PROFILE_ID: ${{ secrets.NOTION_PROFILE_ID }}
+      NOTION_EVALUATION_ID: ${{ secrets.NOTION_EVALUATION_ID }}
+      NOTION_VISION_ID: ${{ secrets.NOTION_VISION_ID }}
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
