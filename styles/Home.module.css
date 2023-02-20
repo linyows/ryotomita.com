@@ -46,7 +46,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
-  background-color: #EBF6FF;
+  background-color: var(--secondary-color);
   border-radius: 15px;
 }
 .evaluation h3 {
@@ -208,11 +208,12 @@
     margin-left: 9.3rem;
   }
   .evaluation h3 {
-    font-size: 1rem;
+    font-size: .9rem;
   }
   .evaluation {
     margin: 1rem 0 0;
     padding: 1rem;
+    gap: .5rem;
   }
   .archivement {
     padding: 0;
@@ -233,7 +234,7 @@
     border: 1px solid #000;
   }
 }
-@media (max-width: 390px) {
+@media (max-width: 375px) {
   .portrait {
     float: none;
   }
