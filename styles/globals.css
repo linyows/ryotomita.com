@@ -68,6 +68,9 @@ a {
 .main .notionate-blocks-text-p {
   line-height: 1.8;
 }
+.main .notionate-table-row {
+  min-width: 100%;
+}
 .notionate-override-callout .notionate-blocks-callout {
   width: auto;
 }

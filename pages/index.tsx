@@ -2,8 +2,8 @@ import type { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '@/styles/Home.module.css'
-import { FetchBlocks, FetchPage, FetchDatabase, GetPageResponseEx, ListBlockChildrenResponseEx, QueryDatabaseParameters, PageObjectResponse } from 'notionate'
-import { Blocks } from 'notionate/dist/components'
+import { FetchBlocks, FetchPage, FetchDatabase, GetPageResponseEx, ListBlockChildrenResponseEx, PageObjectResponse, QueryDatabaseResponseEx } from 'notionate'
+import { Blocks, Table } from 'notionate/dist/components'
 import 'notionate/dist/styles/notionate.css'
 
 type TitleAndBlocks = {
@@ -18,6 +18,12 @@ type Evaluation = {
   number: number
 }
 
+type Recommenders = {
+  title: string
+  desc: string
+  db: QueryDatabaseResponseEx
+}
+
 type Props = {
   message: TitleAndBlocks
   manifesto: TitleAndBlocks
@@ -26,7 +32,19 @@ type Props = {
   vision: TitleAndBlocks
   collaboration: Evaluation
   reward: Evaluation
+  recommenders: Recommenders
 }
+
+const messageid = process.env.NOTION_HOME_ID as string
+const manifestoid = process.env.NOTION_MANIFESTO_ID as string
+const archivementid = process.env.NOTION_ARCHIVEMENT_ID as string
+const profileid = process.env.NOTION_PROFILE_ID as string
+const evaluationid = process.env.NOTION_EVALUATION_ID as string
+const visionid = process.env.NOTION_VISION_ID as string
+const recommenderid = process.env.NOTION_RECOMMENDER_ID as string
+
+const recommenderName = '推薦者'
+const recommenderAffiliation = '所属支部'
 
 const buildTitleAndBlocks = async (id: string): Promise<TitleAndBlocks> => {
   const page = await FetchPage(id)
@@ -56,14 +74,33 @@ const getEvaluation = async (slug: string): Promise<Evaluation> => {
   }
 }
 
-const messageid = process.env.NOTION_HOME_ID as string
-const manifestoid = process.env.NOTION_MANIFESTO_ID as string
-const archivementid = process.env.NOTION_ARCHIVEMENT_ID as string
-const profileid = process.env.NOTION_PROFILE_ID as string
-const evaluationid = process.env.NOTION_EVALUATION_ID as string
-const visionid = process.env.NOTION_VISION_ID as string
+const getRecommenders = async (): Promise<Recommenders> => {
+  const db = await FetchDatabase({
+    database_id: recommenderid,
+    sorts: [
+      {
+        property: recommenderAffiliation,
+        direction: 'ascending',
+      },
+      {
+        property: recommenderName,
+        direction: 'ascending',
+      },
+    ],
+  })
+  // @ts-ignore
+  const title = db.meta.title[0].plain_text
+  // @ts-ignore
+  const desc = db.meta.description[0].plain_text
+  return {
+    title,
+    desc,
+    db,
+  }
+}
 
 export const getStaticProps: GetStaticProps = async (context) => {
+  const r = await getRecommenders()
   return {
     props: {
       message: await buildTitleAndBlocks(messageid),
@@ -73,11 +110,12 @@ export const getStaticProps: GetStaticProps = async (context) => {
       vision: await buildTitleAndBlocks(visionid),
       collaboration: await getEvaluation('collaboration'),
       reward: await getEvaluation('reward'),
+      recommenders: await getRecommenders(),
     }
   }
 }
 
-const Home: NextPage<Props> = ({ message, manifesto, archivement, profile, vision, collaboration, reward }) => {
+const Home: NextPage<Props> = ({ message, manifesto, archivement, profile, vision, collaboration, reward, recommenders }) => {
   return (
     <>
       <Head>
@@ -139,6 +177,14 @@ const Home: NextPage<Props> = ({ message, manifesto, archivement, profile, visio
             写真提供：福岡市
           </figcaption>
         </figure>
+
+        <div className={styles.box}>
+          <section className={`${styles.recommenders}`}>
+            <h1>{recommenders.title}</h1>
+            <p className={styles.recommendersDesc}>{recommenders.desc}</p>
+            <Table keys={[recommenderName, recommenderAffiliation]} db={recommenders.db} href="/" />
+          </section>
+        </div>
 
         <div className={styles.box}>
           <section className={`${styles.archivement} notionate-override-half-image`}>

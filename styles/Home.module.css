@@ -104,6 +104,13 @@
   text-align: right;
 }
 
+.recommenders {
+  margin: 1rem auto 5rem;
+  max-width: 800px;
+}
+.recommendersDesc {
+  padding: 1rem 0 2rem;
+}
 .archivement {
   margin: 1rem auto 5rem;
   max-width: 800px;
@@ -178,29 +185,30 @@
     clear: both;
   }
   .portrait {
-    margin: 2rem 1rem 0 0;
+    margin: 2rem .7rem 0 0;
     display: block;
-    width: 160px;
-    height: 240px;
-    padding: 10px;
+    width: 140px;
+    height: 210px;
+    padding: 5px;
     float: left;
   }
   .nameTitle {
-    padding-top: 3rem;
+    padding-top: 2rem;
     font-size: 1rem;
-    padding-left: .3rem;
+    margin-left: 9rem;
   }
   .name {
-    font-size: 3rem;
+    font-size: 2.6rem;
   }
   .nameYomi {
-    font-size: .8rem;
+    font-size: .6rem;
     letter-spacing: .5rem;
     padding-top: .5rem;
     padding-left: .4rem;
+    margin-left: 9.3rem;
   }
   .evaluation h3 {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
   .evaluation {
     margin: 1rem 0 0;
@@ -223,6 +231,22 @@
     margin: 2rem auto 3rem;
     padding: 0 1rem 2rem;
     border: 1px solid #000;
+  }
+}
+@media (max-width: 390px) {
+  .portrait {
+    float: none;
+  }
+  .title {
+    padding: 1rem 0 0;
+  }
+  .nameTitle {
+    padding-top: 0;
+    padding-left: .3rem;
+    margin-left: 0;
+  }
+  .nameYomi {
+    margin-left: 0;
   }
 }
 
