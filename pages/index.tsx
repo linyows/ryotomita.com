@@ -32,7 +32,7 @@ type Props = {
   vision: TitleAndBlocks
   collaboration: Evaluation
   reward: Evaluation
-  recommenders: Recommenders
+  //recommenders: Recommenders
 }
 
 const messageid = process.env.NOTION_HOME_ID as string
@@ -41,10 +41,9 @@ const archivementid = process.env.NOTION_ARCHIVEMENT_ID as string
 const profileid = process.env.NOTION_PROFILE_ID as string
 const evaluationid = process.env.NOTION_EVALUATION_ID as string
 const visionid = process.env.NOTION_VISION_ID as string
-const recommenderid = process.env.NOTION_RECOMMENDER_ID as string
-
-const recommenderName = '推薦者'
-const recommenderAffiliation = '所属支部'
+//const recommenderid = process.env.NOTION_RECOMMENDER_ID as string
+//const recommenderName = '推薦者'
+//const recommenderAffiliation = '所属支部'
 
 const buildTitleAndBlocks = async (id: string): Promise<TitleAndBlocks> => {
   const page = await FetchPage(id)
@@ -74,33 +73,33 @@ const getEvaluation = async (slug: string): Promise<Evaluation> => {
   }
 }
 
-const getRecommenders = async (): Promise<Recommenders> => {
-  const db = await FetchDatabase({
-    database_id: recommenderid,
-    sorts: [
-      {
-        property: recommenderAffiliation,
-        direction: 'ascending',
-      },
-      {
-        property: recommenderName,
-        direction: 'ascending',
-      },
-    ],
-  })
-  // @ts-ignore
-  const title = db.meta.title[0].plain_text
-  // @ts-ignore
-  const desc = db.meta.description[0].plain_text
-  return {
-    title,
-    desc,
-    db,
-  }
-}
+//const getRecommenders = async (): Promise<Recommenders> => {
+//  const db = await FetchDatabase({
+//    database_id: recommenderid,
+//    sorts: [
+//      {
+//        property: recommenderAffiliation,
+//        direction: 'ascending',
+//      },
+//      {
+//        property: recommenderName,
+//        direction: 'ascending',
+//      },
+//    ],
+//  })
+//  // @ts-ignore
+//  const title = db.meta.title[0].plain_text
+//  // @ts-ignore
+//  const desc = db.meta.description[0].plain_text
+//  return {
+//    title,
+//    desc,
+//    db,
+//  }
+//}
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const r = await getRecommenders()
+  //const r = await getRecommenders()
   return {
     props: {
       message: await buildTitleAndBlocks(messageid),
@@ -110,12 +109,12 @@ export const getStaticProps: GetStaticProps = async (context) => {
       vision: await buildTitleAndBlocks(visionid),
       collaboration: await getEvaluation('collaboration'),
       reward: await getEvaluation('reward'),
-      recommenders: await getRecommenders(),
+      //recommenders: await getRecommenders(),
     }
   }
 }
 
-const Home: NextPage<Props> = ({ message, manifesto, archivement, profile, vision, collaboration, reward, recommenders }) => {
+const Home: NextPage<Props> = ({ message, manifesto, archivement, profile, vision, collaboration, reward }) => {
   return (
     <>
       <Head>
@@ -178,6 +177,7 @@ const Home: NextPage<Props> = ({ message, manifesto, archivement, profile, visio
           </figcaption>
         </figure>
 
+{/* 
         <div className={styles.box}>
           <section className={`${styles.recommenders}`}>
             <h1>{recommenders.title}</h1>
@@ -185,6 +185,7 @@ const Home: NextPage<Props> = ({ message, manifesto, archivement, profile, visio
             <Table keys={[recommenderName, recommenderAffiliation]} db={recommenders.db} href="/" />
           </section>
         </div>
+*/}
 
         <div className={styles.box}>
           <section className={`${styles.archivement} notionate-override-half-image`}>
