@@ -1545,10 +1545,10 @@ node-fetch@^2.6.1:
   dependencies:
     whatwg-url "^5.0.0"
 
-notionate@^7.1.0:
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/notionate/-/notionate-7.1.0.tgz#550d4c93c3764488c1ff30a24217c87c1bb568c9"
-  integrity sha512-CzCtTgVbhGA8v4qj1qpDhhjRU0ZoTlT5wH+vb2LQmHSWJYUavpBT+BYbyhvVHtjGH6x0M0aOvJROmhxNH4Q3Hg==
+notionate@^7.2.0:
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/notionate/-/notionate-7.2.0.tgz#9516e261865550a4c0dbf6f6b136d8fc356f055b"
+  integrity sha512-K0B/4/+nQiUlqXpLhg0BpOV99LaIJ9yeKleXadX7sPurjMdRZcQ0LkYw9iIUmWNTzKJRit/K48rOFMQKG2P5mA==
   dependencies:
     "@notionhq/client" "^2.1.1"
     "@types/prismjs" "^1.26.0"
