@@ -18,11 +18,13 @@ type Evaluation = {
   number: number
 }
 
+/*
 type Recommenders = {
   title: string
   desc: string
   db: QueryDatabaseResponseEx
 }
+*/
 
 type Props = {
   message: TitleAndBlocks
@@ -41,9 +43,11 @@ const archivementid = process.env.NOTION_ARCHIVEMENT_ID as string
 const profileid = process.env.NOTION_PROFILE_ID as string
 const evaluationid = process.env.NOTION_EVALUATION_ID as string
 const visionid = process.env.NOTION_VISION_ID as string
-//const recommenderid = process.env.NOTION_RECOMMENDER_ID as string
-//const recommenderName = '推薦者'
-//const recommenderAffiliation = '所属支部'
+/*
+const recommenderid = process.env.NOTION_RECOMMENDER_ID as string
+const recommenderName = '推薦者'
+const recommenderAffiliation = '所属支部'
+*/
 
 const buildTitleAndBlocks = async (id: string): Promise<TitleAndBlocks> => {
   const page = await FetchPage(id)
@@ -73,33 +77,34 @@ const getEvaluation = async (slug: string): Promise<Evaluation> => {
   }
 }
 
-//const getRecommenders = async (): Promise<Recommenders> => {
-//  const db = await FetchDatabase({
-//    database_id: recommenderid,
-//    sorts: [
-//      {
-//        property: recommenderAffiliation,
-//        direction: 'ascending',
-//      },
-//      {
-//        property: recommenderName,
-//        direction: 'ascending',
-//      },
-//    ],
-//  })
-//  // @ts-ignore
-//  const title = db.meta.title[0].plain_text
-//  // @ts-ignore
-//  const desc = db.meta.description[0].plain_text
-//  return {
-//    title,
-//    desc,
-//    db,
-//  }
-//}
+/*
+const getRecommenders = async (): Promise<Recommenders> => {
+  const db = await FetchDatabase({
+    database_id: recommenderid,
+    sorts: [
+      {
+        property: recommenderAffiliation,
+        direction: 'ascending',
+      },
+      {
+        property: recommenderName,
+        direction: 'ascending',
+      },
+    ],
+  })
+  // @ts-ignore
+  const title = db.meta.title[0].plain_text
+  // @ts-ignore
+  const desc = db.meta.description[0].plain_text
+  return {
+    title,
+    desc,
+    db,
+  }
+}
+*/
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  //const r = await getRecommenders()
   return {
     props: {
       message: await buildTitleAndBlocks(messageid),
@@ -123,6 +128,11 @@ const Home: NextPage<Props> = ({ message, manifesto, archivement, profile, visio
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      <div className={styles.band}>
+        <p className={styles.bandDesc}>令和5年福岡県行政書士会 会長選挙</p>
+        <p className={styles.bandTitle}>立候補所信</p>
+      </div>
 
       <main>
         <div className={styles.header}>
@@ -177,7 +187,13 @@ const Home: NextPage<Props> = ({ message, manifesto, archivement, profile, visio
           </figcaption>
         </figure>
 
-{/* 
+        <div className={styles.box}>
+          <section className={`${styles.archivement} notionate-override-half-image`}>
+            <h1>{archivement.title}</h1>
+            <Blocks blocks={archivement.blocks} />
+          </section>
+        </div>
+{/*
         <div className={styles.box}>
           <section className={`${styles.recommenders}`}>
             <h1>{recommenders.title}</h1>
@@ -186,13 +202,6 @@ const Home: NextPage<Props> = ({ message, manifesto, archivement, profile, visio
           </section>
         </div>
 */}
-
-        <div className={styles.box}>
-          <section className={`${styles.archivement} notionate-override-half-image`}>
-            <h1>{archivement.title}</h1>
-            <Blocks blocks={archivement.blocks} />
-          </section>
-        </div>
       </main>
 
       <div className={styles.profileBox}>
