@@ -1,18 +1,23 @@
 :root {
   /* Blue
   --primary-color: #1951A8;
+  --secondery-color: #EBF6FF;
   */
-  /* Pink
-  --primary-color: #ea8398; */
+  /* Soft Pink
+  --primary-color: #ea8398;
+  --secondary-color: #dfdde0;
+  */
+  /* Gyoseisyosikai Pink
   --primary-color: #ee72af;
   --secondary-color: #dfdde0;
+  */
   /* Green 
   --primary-color: #3FA796;
   --secondary-color: #F7FEE0;
-  /* Red Violet
-  --primary-color: #c0448f;
-  --secondery-color: #EBF6FF;
   */
+  /* Red Violet */
+  --primary-color: #c0448f;
+  --secondery-color: #F9ECF4;
   --max-width: 1100px;
   --border-radius: 12px;
   --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
