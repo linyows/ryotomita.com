@@ -15,9 +15,17 @@
   --primary-color: #3FA796;
   --secondary-color: #F7FEE0;
   */
-  /* Red Violet */
+  /* Red Violet
   --primary-color: #c0448f;
-  --secondery-color: #F9ECF4;
+  --secondary-color: #F9ECF4;
+  */
+  /* Red Violet (popstar)
+  https://www.color-hex.com/color/c44e66
+  https://en.wikipedia.org/wiki/Red-violet
+  */
+  --primary-color: #c44e66;
+  --secondary-color: #f3dbe0;
+  
   --max-width: 1100px;
   --border-radius: 12px;
   --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
