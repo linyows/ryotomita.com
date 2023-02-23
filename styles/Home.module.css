@@ -127,6 +127,13 @@
 .recommendersDesc {
   padding: 1rem 0 2rem;
 }
+.gallery {
+  margin: 1rem auto 5rem;
+}
+.galleryDesc {
+  padding: 1rem 0 2rem;
+}
+
 .archivement {
   margin: 1rem auto 5rem;
   max-width: 800px;

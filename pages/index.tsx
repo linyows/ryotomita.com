@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '@/styles/Home.module.css'
 import { FetchBlocks, FetchPage, FetchDatabase, GetPageResponseEx, ListBlockChildrenResponseEx, PageObjectResponse, QueryDatabaseResponseEx } from 'notionate'
-import { Blocks, Table } from 'notionate/dist/components'
+import { Blocks, Gallery, Table } from 'notionate/dist/components'
 import 'notionate/dist/styles/notionate.css'
 
 type TitleAndBlocks = {
@@ -18,13 +18,11 @@ type Evaluation = {
   number: number
 }
 
-/*
-type Recommenders = {
+type DB = {
   title: string
   desc: string
   db: QueryDatabaseResponseEx
 }
-*/
 
 type Props = {
   message: TitleAndBlocks
@@ -34,7 +32,8 @@ type Props = {
   vision: TitleAndBlocks
   collaboration: Evaluation
   reward: Evaluation
-  //recommenders: Recommenders
+  gallery: DB
+  //recommenders: DB
 }
 
 const messageid = process.env.NOTION_HOME_ID as string
@@ -43,6 +42,7 @@ const archivementid = process.env.NOTION_ARCHIVEMENT_ID as string
 const profileid = process.env.NOTION_PROFILE_ID as string
 const evaluationid = process.env.NOTION_EVALUATION_ID as string
 const visionid = process.env.NOTION_VISION_ID as string
+const galleryid = process.env.NOTION_GALLERY_ID as string
 /*
 const recommenderid = process.env.NOTION_RECOMMENDER_ID as string
 const recommenderName = '推薦者'
@@ -78,7 +78,7 @@ const getEvaluation = async (slug: string): Promise<Evaluation> => {
 }
 
 /*
-const getRecommenders = async (): Promise<Recommenders> => {
+const getRecommenders = async (): Promise<DB> => {
   const db = await FetchDatabase({
     database_id: recommenderid,
     sorts: [
@@ -104,6 +104,21 @@ const getRecommenders = async (): Promise<Recommenders> => {
 }
 */
 
+const getGallery = async (): Promise<DB> => {
+  const db = await FetchDatabase({
+    database_id: galleryid,
+  })
+  // @ts-ignore
+  const title = db.meta.title[0].plain_text
+  // @ts-ignore
+  const desc = db.meta.description[0].plain_text
+  return {
+    title,
+    desc,
+    db,
+  }
+}
+
 export const getStaticProps: GetStaticProps = async (context) => {
   return {
     props: {
@@ -114,12 +129,13 @@ export const getStaticProps: GetStaticProps = async (context) => {
       vision: await buildTitleAndBlocks(visionid),
       collaboration: await getEvaluation('collaboration'),
       reward: await getEvaluation('reward'),
+      gallery: await getGallery(),
       //recommenders: await getRecommenders(),
     }
   }
 }
 
-const Home: NextPage<Props> = ({ message, manifesto, archivement, profile, vision, collaboration, reward }) => {
+const Home: NextPage<Props> = ({ message, manifesto, archivement, profile, vision, collaboration, reward, gallery }) => {
   return (
     <>
       <Head>
@@ -195,13 +211,20 @@ const Home: NextPage<Props> = ({ message, manifesto, archivement, profile, visio
         </div>
 {/*
         <div className={styles.box}>
-          <section className={`${styles.recommenders}`}>
+          <section className={`${styles.gallery}`}>
             <h1>{recommenders.title}</h1>
             <p className={styles.recommendersDesc}>{recommenders.desc}</p>
-            <Table keys={[recommenderName, recommenderAffiliation]} db={recommenders.db} href="/" />
+            <Table keys={[recommenderName, recommenderAffiliation]} db={recommenders.db} />
           </section>
         </div>
 */}
+        <div className={styles.box}>
+          <section className={`${styles.gallery}`}>
+            <h1>{gallery.title}</h1>
+            <p className={styles.galleryDesc}>{gallery.desc}</p>
+            <Gallery keys={[]} db={gallery.db} preview="cover" size="large" fit={true} />
+          </section>
+        </div>
       </main>
 
       <div className={styles.profileBox}>
