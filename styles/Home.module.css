@@ -1,6 +1,6 @@
 .band {
   position: absolute;
-  top: 2.5rem;
+  top: 4rem;
   left: 0;
   text-align: center;
   width: 100%;
@@ -8,9 +8,10 @@
 .bandTitle {
   font-weight: bold;
   letter-spacing: 1rem;
+  font-size: 1.8rem;
 }
 .bandDesc {
-  font-size: .9rem;
+  font-size: 1.2rem;
   letter-spacing: .1rem;
 }
 
@@ -202,6 +203,12 @@
   }
 }
 @media (max-width: 600px) {
+  .bandTitle {
+    font-size: 1rem;
+  }
+  .bandDesc {
+    font-size: .9rem;
+  }
   .header .body h1 {
     clear: both;
   }
