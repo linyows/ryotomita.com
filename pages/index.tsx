@@ -107,6 +107,18 @@ const getRecommenders = async (): Promise<DB> => {
 const getGallery = async (): Promise<DB> => {
   const db = await FetchDatabase({
     database_id: galleryid,
+    filter: {
+      property: 'Published',
+      checkbox: {
+        equals: true
+      },
+    },
+    sorts: [
+      {
+        property: 'Sort',
+        direction: 'ascending',
+      },
+    ],
   })
   // @ts-ignore
   const title = db.meta.title[0].plain_text
@@ -222,7 +234,7 @@ const Home: NextPage<Props> = ({ message, manifesto, archivement, profile, visio
           <section className={`${styles.gallery}`}>
             <h1>{gallery.title}</h1>
             <p className={styles.galleryDesc}>{gallery.desc}</p>
-            <Gallery keys={[]} db={gallery.db} preview="cover" size="large" fit={true} />
+            <Gallery keys={['Name']} db={gallery.db} preview="cover" size="large" fit={false} />
           </section>
         </div>
       </main>
