@@ -9,7 +9,7 @@ export default function GenSitemap() {
        <lastmod>${date.toISOString()}</lastmod>
      </url>
    </urlset>
-   </xml>
 `
   fs.writeFileSync('./public/sitemap.xml', f)
 }
+
