@@ -20,7 +20,7 @@ export default function GenSitemap() {
        <lastmod>${buildW3CDateFormat(date)}</lastmod>
      </url>
    </urlset>
-   </xml>
 `
   fs.writeFileSync('./public/sitemap.xml', f)
 }
+
