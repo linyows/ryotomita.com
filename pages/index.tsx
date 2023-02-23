@@ -5,6 +5,8 @@ import styles from '@/styles/Home.module.css'
 import { FetchBlocks, FetchPage, FetchDatabase, GetPageResponseEx, ListBlockChildrenResponseEx, PageObjectResponse, QueryDatabaseResponseEx } from 'notionate'
 import { Blocks, Gallery, Table } from 'notionate/dist/components'
 import 'notionate/dist/styles/notionate.css'
+import GenSitemap from '@/lib/sitemap'
+import GA from '@/components/ga'
 
 type TitleAndBlocks = {
   title: string
@@ -132,6 +134,8 @@ const getGallery = async (): Promise<DB> => {
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
+  GenSitemap()
+
   return {
     props: {
       message: await buildTitleAndBlocks(messageid),
@@ -148,12 +152,28 @@ export const getStaticProps: GetStaticProps = async (context) => {
 }
 
 const Home: NextPage<Props> = ({ message, manifesto, archivement, profile, vision, collaboration, reward, gallery }) => {
+  const sitename = `行政書士 冨田 良`
+  const sitedesc = `令和5年福岡県行政書士会 会長選挙 立候補所信`
+  const url = `https://ryotomita.com/`
+  const siteimage = `${url}ogimage.png`
   return (
     <>
       <Head>
-        <title>行政書士 冨田 良</title>
-        <meta name="description" content="" />
+        <title>{sitename}</title>
+        <meta name="description" content={sitedesc} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={sitename} />
+        <meta name="twitter:description" content={sitedesc} />
+        <meta name="twitter:image" content={siteimage} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="robots" content="all" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content={sitename} />
+        <meta property="og:description" content={sitedesc} />
+        <meta property="og:image" content={siteimage} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:url" content={url} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -253,6 +273,8 @@ const Home: NextPage<Props> = ({ message, manifesto, archivement, profile, visio
           Powered by Next.js, Notionate, Notion, GitHub, Cloudflare and {` `}
           <a href="https://lolipop.jp/" target="_blank" rel="noopener noreferrer">Lolipop</a>.
       </footer>
+
+      <GA />
     </>
   )
 }
