@@ -203,6 +203,9 @@
   }
 }
 @media (max-width: 600px) {
+  .band {
+    top: 2rem;
+  }
   .bandTitle {
     font-size: 1rem;
   }
@@ -242,6 +245,7 @@
     margin: 1rem 0 0;
     padding: 1rem;
     gap: .5rem;
+    font-size: .8rem;
   }
   .archivement {
     padding: 0;
@@ -263,6 +267,9 @@
   }
 }
 @media (max-width: 375px) {
+  .evaluationunit {
+    font-size: 3rem;
+  }
   .portrait {
     float: none;
   }
