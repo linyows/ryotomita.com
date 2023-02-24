@@ -209,7 +209,7 @@ const Home: NextPage<Props> = ({ message, manifesto, archivement, profile, visio
             </div>
             <div>
               <h3>{reward.name}</h3>
-              <p><span className={styles.evaluationunit}>{reward.number}</span>{reward.unit}</p>
+              <p>約<span className={styles.evaluationunit}>{reward.number}</span>{reward.unit}</p>
             </div>
           </section>
         </div>
