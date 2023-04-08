@@ -195,7 +195,7 @@ const Home: NextPage<Props> = ({ message, manifesto, archivement, profile, visio
                 <span className={styles.nameYomi}>とみた りょう</span>
               </h1>
             </div>
-            <div className={styles.body}>
+            <div className={`firstview ${styles.body}`}>
               <Blocks blocks={message.blocks} />
             </div>
           </div>

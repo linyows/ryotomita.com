@@ -128,3 +128,17 @@ a {
     width: 50%;
   }
 }
+
+.firstview .notionate-blocks-callout {
+  margin-top: 3rem;
+}
+@media (max-width: 600px) {
+  .firstview .notionate-blocks-callout {
+    font-size: .8rem;
+  }
+  .firstview::before {
+    display: block;
+    clear: both;
+    content: '';
+  }
+}
